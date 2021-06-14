@@ -1,0 +1,64 @@
+/*----- СТАРТ "Тип и размер шрифта для всего сайта" -----*/
+    *{
+        font-family: Verdana, Arial, Helvetica, sans-serif; /* Указание типа шрифта. */
+        font-size: 14px; /* Размер текста в ссылках. */
+    }
+/*----- КОНЕЦ "Тип и размер шрифта для всего сайта" -----*/
+
+
+
+/*----- СТАРТ "Основные настройки сайта" -----*/
+    body{
+        width: 100%;
+    }
+
+    #wrapper{
+        margin-left:auto;
+        margin-right:auto;
+        height:auto;
+        width:auto;
+    }
+
+    #inner{
+        float:left;
+        width:80%;
+        margin-left:10%;
+        margin-right:10%;
+    }
+/*----- КОНЕЦ "Основные настройки сайта" -----*/
+
+
+
+/*----- СТАРТ "Кнопка удаления заказа" -----*/
+    /* Стандартное поведение */
+    .btn-delete{
+        background: red;
+        color: white;
+        border: 1px solid red;
+        width:100%;
+        font-weight: bold
+
+    }
+
+    /* Поведение при наведении */
+    .btn-delete:hover{
+        background: white;
+        color: red;
+    }
+/*----- КОНЕЦ "Кнопка удаления заказа" -----*/
+
+
+
+/*----- СТАРТ "Настройка таблиц" -----*/
+  table{
+    border: 1px solid black;
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  th{
+    background: LightSkyBlue;
+    font-weight: bold;
+    border-bottom: 1px solid black;
+  }
+/*----- КОНЕЦ "Настройка таблиц" -----*/

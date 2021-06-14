@@ -1,0 +1,54 @@
+<div class="add_order-fade">
+  <div class="popup">
+    <a class="add_order-close" href="#">Закрыть</a>
+    <div>
+      <h5>Добавление нового заказа</h5>
+      <form method="post" action="{% url 'my_orders' %}" name="test">
+        {% csrf_token %}
+
+        <label for="user">Выберите заказчика</label>
+        <select id="user" name="user" required>
+          <option>Выберите заказчика</option>
+          {% for user in users %}
+          <option value="{{ user.id }}">{{ user.last_name }} {{ user.first_name }}</option>
+          {% endfor %}
+        </select>
+
+        <label for="total_order">Сумма заказа</label>
+        <input type="number"  step="0.01" placeholder="Сумма заказа" name="total_order" id="total_order" required>
+        <input type="text" hidden name="type_form" value="new_order">
+        <input type="text" hidden name="type_form1">
+
+        <input type="submit" value="Добавить заказ">
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Скрипт для модального окна-->
+<script>
+        $(document).ready(function($) {
+            $('.add_order-open').click(function() {
+                $('.add_order-fade').fadeIn();
+                return false;
+            });
+
+            $('.add_order-close').click(function() {
+                $(this).parents('.add_order-fade').fadeOut();
+                return false;
+            });
+
+            $(document).keydown(function(e) {
+                if (e.keyCode === 27) {
+                    e.stopPropagation();
+                    $('.add_order-fade').fadeOut();
+                }
+            });
+
+            $('.add_order-fade').click(function(e) {
+                if ($(e.target).closest('.popup').length == 0) {
+                    $(this).fadeOut();
+                }
+            });
+        });
+</script>

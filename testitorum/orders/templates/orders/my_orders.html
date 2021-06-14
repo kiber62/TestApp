@@ -1,0 +1,90 @@
+{% extends 'orders/base.html' %}
+
+{% block title %}
+Главная страница
+{% endblock %}
+
+{% block main %}
+
+<div>
+    <h5>Добавление нового заказа</h5>
+    <form method="post" action="{% url 'my_orders' %}" name="test">
+        {% csrf_token %}
+
+
+        <label for="user">Выберите заказчика</label>
+        <select id="user" name="user" required>
+            <option>Выберите заказчика</option>
+            {% for user in users %}
+            <option value="{{ user.id }}">{{ user.last_name }} {{ user.first_name }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="total_order">Сумма заказа</label>
+        <input type="number"  step="0.01" placeholder="Сумма заказа" name="total_order" id="total_order" required>
+
+        <input type="text" hidden name="type_form" value="new_order">
+        <input type="text" hidden name="type_form1">
+
+        <input type="submit" value="Добавить заказ">
+    </form>
+</div>
+
+<div style="margin-top:30px;">
+    <table cellpadding="5" cellspacing="10" border="1">
+        <thead>
+            <tr>
+                <th>Дата заказа</th>
+                <th>Заказчик</th>
+                <th>Сумма заказа</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+
+            {% for order in page_obj %}
+            <tr>
+                <td>{{ order.date_order }}</td>
+                <td>{{ order.client_id.last_name }} {{ order.client_id.first_name }}</td>
+                <td>{{ order.total }}</td>
+                <td>
+                    <form action="{% url 'my_orders' %}" method="post">
+                        {% csrf_token %}
+                        <input type="number" hidden name="order_id" value="{{ order.id }}">
+                        <input type="text" hidden name="type_form" value="delete_order">
+                        <input type="text" hidden name="type_form1">
+                        <input type="submit" class="btn-delete" value="Удалить заказ">
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+
+        </tbody>
+    </table>
+
+    <div>
+        <ul class="pagination">
+            {% if page_obj.has_previous %}
+            <li><a href="{% url 'my_orders' %}?page=1">&laquo; Первая</a></li>
+            <li><a href="{% url 'my_orders' %}?page={{ page_obj.previous_page_number }}">Предыдущая</a></li>
+            {% endif %}
+
+            <li><a>Страница {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}.</a></li>
+
+            {% if page_obj.has_next %}
+            <li><a href="{% url 'my_orders' %}?page={{ page_obj.next_page_number }}">Следующая</a></li>
+            <li><a href="{% url 'my_orders' %}?page={{ page_obj.paginator.num_pages }}">Последняя &raquo;</a></li>
+            {% endif %}
+
+        </ul>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+{% endblock %}

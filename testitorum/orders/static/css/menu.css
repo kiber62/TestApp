@@ -1,0 +1,24 @@
+.navigation {
+     list-style: none; /* Отключение отображения маркеров. */
+     width: auto;
+     padding: 0px;
+  }
+  .navigation li {
+     float: left; /* Выстраивание элементов списка в один ряд. */
+     margin-right: 1px; /* создание отступов для того, чтобы не сливались пункты меню. */
+     font-family: Verdana, Arial, Helvetica, sans-serif; /* Указание типа шрифта. */
+     font-size: 18px; /* Размер текста в ссылках. */
+  }
+  .navigation li a {
+     display: block; /* Изменение отображения на блочное для того чтобы иметь возможность задать внутренние отступы. */
+     padding: 15px 20px;  /* Внутри блочные отступы. */
+     background: blue; /* Цвет блоков меню. */
+     color: white; /* Цвет текста в блоках меню. */
+     text-decoration: none; /* Устранение подчёркивания ссылок. */
+     position: relative; /* Это необходимо при использовании Internet Explorer 6 для того, чтобы ссылка по всей своей площади была «кликабельной». */
+    border: 1px solid blue;
+  }
+  .navigation li a:hover {
+     background: white; /* Цвет блока при наведении курсора. */
+     color: blue;  /* Цвет текста при наведении курсора. */
+  }

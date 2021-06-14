@@ -1,0 +1,14 @@
+<ul class="navigation">
+    <li><a href="{% url 'home' %}">Недельный отчет</a></li>
+
+    {% if user.is_authenticated %}
+        <li><a href="{% url 'my_orders' %}">Список заказов</a></li>
+        {% if active_page == "my_orders" %}
+        <li><a class="add_order-open">Добавить новый заказ</a></li>
+        {% endif %}
+        <li><a href="{% url 'logout' %}">Выйти</a></li>
+    {% else %}
+        <li><a href="{% url 'login' %}">Личный кабинет</a></li>
+    {% endif %}
+
+</ul>

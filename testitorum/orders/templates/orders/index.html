@@ -1,0 +1,68 @@
+{% extends 'orders/base.html' %}
+
+{% block title %}
+Главная страница
+{% endblock %}
+
+{% block main %}
+<div style="margin-top: 30px; text-align:center;">
+    <form action="#" method="post">
+        {% csrf_token %}
+        <label for="week_id">Фильтрация по неделям: </label>
+        <input type="week" name="week_id2" id="week_id2" hidden>
+        <input type="week" min="2021-W01" max="2021-W52" name="week_id" id="week_id" value="{{ week }}" required>
+        <input hidden type="submit" name="button_week_id" id="button_week_id" value="Сделать выборку">
+    </form>
+</div>
+
+<div style="margin-top: 10px;">
+    <table cellpadding="5" cellspacing="10" border="1">
+        <thead>
+            <tr>
+                <th>
+                   Дата
+                </th>
+                <th>
+                    Перечень заказчиков
+                </th>
+                <th>
+                    Общая сумма заказов за день
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+
+            {% for order in week_data %}
+            <tr>
+                <td>
+                    {{ order.day }}
+                </td>
+                <td>
+                    {{ order.clients }}
+                </td>
+                <td>
+                    {{ order.total }}
+                </td>
+            </tr>
+            {% endfor %}
+
+            </tbody>
+        <tfoot style="background: green">
+            <tr>
+                <td></td>
+                <td>
+                    <span style="color: white;">
+                        {{ client_for_week }}
+                    </span>
+                </td>
+                <td>
+                    <span style="color: white;">
+                        {{ total_for_week }}
+                    </span>
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+</div>
+
+{% endblock %}
